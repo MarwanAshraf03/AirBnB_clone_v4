@@ -14,4 +14,17 @@ $("document").ready(() => {
             if (list.length == 0)
                 $(".amenities h4").html("&nbsp;")
         });
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:5001/api/v1/status/",
+        success: function (data) {
+            if (data.status == "OK")
+                $("div#api_status").addClass("available");
+            else
+                $("div#api_status").removeClass("available");
+        },
+        error: function() {
+            $("div#api_status").removeClass("available");
+        }
+    });    
 })
